@@ -1,0 +1,20 @@
+name: CI - PR Comments
+
+permissions:
+  pull-requests: 'write'
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+
+jobs:
+  compare-macos-screenshots:
+    name: Compare macOS screenshots
+    uses: ./.github/workflows/send-screenshots-to-pixeleagle.yml
+    with:
+      commit: ${{ github.event.workflow_run.head_commit }}
+      branch: ${{ github.event.workflow_run.head_branch }}
+      os: macos
+    secrets: inherit

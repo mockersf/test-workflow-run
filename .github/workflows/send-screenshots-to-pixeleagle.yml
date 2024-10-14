@@ -1,0 +1,26 @@
+name: Echo
+
+on:
+  workflow_call:
+    inputs:
+      commit:
+        required: true
+        type: string
+      branch:
+        required: true
+        type: string
+      os:
+        required: true
+        type: string
+
+jobs:
+  echo:
+    name: Echo
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: Echo
+        run: |
+          echo "Commit: ${{ github.event.inputs.commit }}"
+          echo "Branch: ${{ github.event.inputs.branch }}"
+          echo "OS: ${{ github.event.inputs.os }}"
