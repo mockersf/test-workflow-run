@@ -14,4 +14,15 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: hello
-        run: echo  "hello"
+        run: |
+          mkdir screenshots
+          echo  "hello" > screenshots/hello.txt
+      - name: Save PR number
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          echo ${{ github.event.number }} > ./screenshots/PR
+      - name: save screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-macos
+          path: screenshots
