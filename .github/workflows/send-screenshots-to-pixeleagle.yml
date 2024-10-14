@@ -21,6 +21,6 @@ jobs:
       
       - name: Echo
         run: |
-          echo "Commit: ${{ github.event.inputs.commit }}"
-          echo "Branch: ${{ github.event.inputs.branch }}"
-          echo "OS: ${{ github.event.inputs.os }}"
+          echo "Commit: ${{ inputs.commit }}"
+          echo "Branch: ${{ inputs.branch }}"
+          echo "OS: ${{ inputs.os }}"
