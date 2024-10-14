@@ -45,11 +45,10 @@ jobs:
       run: |
         unzip screenshots-macos.zip
         if [ -f PR ]; then
-          echo "result=$(cat PR)" >> $GITHUB_OUTPUT
+          echo "result=PR-$(cat PR)-${{ github.event.workflow_run.head_branch }}" >> $GITHUB_OUTPUT
         else
-          echo "result=${{ github.run_id }}-$(date +%s)" >> $GITHUB_OUTPUT
+          echo "result=${{ github.event.workflow_run.head_branch }}" >> $GITHUB_OUTPUT
         fi
-        echo "result=${{ github.event.workflow_run.head_branch }}" >> $GITHUB_OUTPUT
       
   compare-macos-screenshots:
     name: Compare macOS screenshots
